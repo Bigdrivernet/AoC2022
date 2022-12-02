@@ -1,0 +1,1 @@
+List = open("Day 2\input.txt").read().split("\n")
