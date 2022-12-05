@@ -1,27 +1,10 @@
-Stacks = [
-    ["D", "T", "W", "F", "J", "S", "H", "N"],
-    ["H", "R", "P", "Q", "T", "N", "B", "G"],
-    ["L", "Q", "V"],
-    ["N", "B", "S", "W", "R", "Q"],
-    ["N", "D", "F", "T", "V", "M", "B"],
-    ["M", "D", "B", "V", "H", "T", "R"],
-    ["D", "B", "Q", "J"],
-    ["D", "N", "J", "V", "R", "Z", "H", "Q"],
-    ["B", "N", "H", "M", "S"]
-]
-SecondStacks = [
-    ["D", "T", "W", "F", "J", "S", "H", "N"],
-    ["H", "R", "P", "Q", "T", "N", "B", "G"],
-    ["L", "Q", "V"],
-    ["N", "B", "S", "W", "R", "Q"],
-    ["N", "D", "F", "T", "V", "M", "B"],
-    ["M", "D", "B", "V", "H", "T", "R"],
-    ["D", "B", "Q", "J"],
-    ["D", "N", "J", "V", "R", "Z", "H", "Q"],
-    ["B", "N", "H", "M", "S"]
-]
 
-Moves = open("Day 5\input.txt").read().split("\n")
+
+Stacks, Moves = open("Day 5\input.txt").read().split("\n\n")
+Stacks = Stacks.split("\n")
+del Stacks[-1]
+
+Moves = Moves.split("\n")
 
 for i in range(len(Moves)):
     Move = Moves[i][5:len(Moves[i])]
