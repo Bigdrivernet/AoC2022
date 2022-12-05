@@ -1,8 +1,28 @@
 
 
-Stacks, Moves = open("Day 5\input.txt").read().split("\n\n")
-Stacks = Stacks.split("\n")
-del Stacks[-1]
+InputStacks, Moves = open("Day 5\input.txt").read().split("\n\n")
+InputStacks = InputStacks.split("\n")
+del InputStacks[-1]
+
+for i in range(len(InputStacks)):
+    InputStacks[i] = InputStacks[i][1:len(InputStacks[i]):4]
+InputStacks.reverse()
+
+Stacks = []
+for i in range(len(InputStacks[0])):
+    Stack = []
+    for j in range(len(InputStacks)):
+        if InputStacks[j][i] != " ":
+            Stack.append(InputStacks[j][i])
+    Stacks.append(Stack)
+
+SecondStacks = []
+for i in range(len(InputStacks[0])):
+    Stack = []
+    for j in range(len(InputStacks)):
+        if InputStacks[j][i] != " ":
+            Stack.append(InputStacks[j][i])
+    SecondStacks.append(Stack)
 
 Moves = Moves.split("\n")
 
@@ -26,7 +46,8 @@ print(Output)
 
 for Move in Moves:
     for i in range(int(Move[0])):
-        SecondStacks[int(Move[2]) - 1].append(SecondStacks[int(Move[1]) - 1].pop(-(int(Move[0])) + i))
+        SecondStacks[int(
+            Move[2]) - 1].append(SecondStacks[int(Move[1]) - 1].pop(-(int(Move[0])) + i))
 
 SecondOutput = ""
 for Stack in SecondStacks:
