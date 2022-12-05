@@ -1,5 +1,3 @@
-
-
 InputStacks, Moves = open("Day 5\input.txt").read().split("\n\n")
 InputStacks = InputStacks.split("\n")
 del InputStacks[-1]
