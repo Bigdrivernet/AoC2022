@@ -1,69 +1,69 @@
-def getDirSize(Dir):
-    Size = 0
-    for ChildDir in Directorys[Dir]["ChildDirs"]:
-        Size += getDirSize(ChildDir)
-    return Size + Directorys[Dir]["Size"]
+def get_dir_size(dir):
+    size = 0
+    for child_dir in directorys[dir]["ChildDirs"]:
+        size += get_dir_size(child_dir)
+    return size + directorys[dir]["Size"]
 
-Input = open("Day 7\input.txt").read().split("\n")
+input = open("Day 7\input.txt").read().split("\n")
 
-for i in range(len(Input)):
-    Input[i] = Input[i].split(" ")
+for i in range(len(input)):
+    input[i] = input[i].split(" ")
 
-print(Input)
+print(input)
 
-Directorys = {}
-Files = []
-ChildDirs = []
-CurrentPath = ""
+directorys = {}
+files = []
+child_dirs = []
+current_path = ""
 
-for Line in Input:
-    print(CurrentPath)
-    if Line[0] == "$":  
-        if Line[1] == "cd" and Line[2] == "..":
-            CurrentPath = CurrentPath[:CurrentPath.rindex("/")]
+for line in input:
+    print(current_path)
+    if line[0] == "$":  
+        if line[1] == "cd" and line[2] == "..":
+            current_path = current_path[:current_path.rindex("/")]
 
-        elif Line[1] == "cd":
-            if CurrentPath != "":
-                CurrentPath += f"/{Line[2]}"
+        elif line[1] == "cd":
+            if current_path != "":
+                current_path += f"/{line[2]}"
             else:
-                CurrentPath = Line[2]
+                current_path = line[2]
 
-        elif Line[1] == "ls":
-            Files = []
-            ChildDirs = []
+        elif line[1] == "ls":
+            files = []
+            child_dirs = []
 
-    elif Line[0].isdigit():
-        if CurrentPath in Directorys:
-            Directorys[CurrentPath]["Size"] += int(Line[0])
+    elif line[0].isdigit():
+        if current_path in directorys:
+            directorys[current_path]["Size"] += int(line[0])
         else:
-            Directorys[CurrentPath] = {"ChildDirs" : [], "Size" : int(Line[0])}
-    elif Line[0] == "dir":
-        if CurrentPath in Directorys:
-            Directorys[CurrentPath]["ChildDirs"].append(CurrentPath + f"/{Line[1]}")
+            directorys[current_path] = {"ChildDirs" : [], "Size" : int(line[0])}
+    elif line[0] == "dir":
+        if current_path in directorys:
+            directorys[current_path]["ChildDirs"].append(current_path + f"/{line[1]}")
         else:
-            Directorys[CurrentPath] = {"ChildDirs" : [CurrentPath + f"/{Line[1]}"], "Size" : 0}
+            directorys[current_path] = {"ChildDirs" : [current_path + f"/{line[1]}"], "Size" : 0}
 
 
-print(Directorys)
+print(directorys)
 
-Sum = 0
-for Directory in Directorys:
-    Size = getDirSize(Directory)
-    if Size <= 100000:
-        Sum += Size
+sum = 0
+for directory in directorys:
+    size = get_dir_size(directory)
+    if size <= 100000:
+        sum += size
 
-print(f"Sum of Dirs < 100000: {Sum}")
+print(f"Sum of Dirs < 100000: {sum}")
 
-UnusedSpace = 70000000 - getDirSize("/")
-print(f"Unused Disk-Space: {UnusedSpace}")
-RequiredDeletion = 30000000 - UnusedSpace
-print(f"Total Filesize to delete required for update: {RequiredDeletion}")
+unused_space = 70000000 - get_dir_size("/")
+print(f"Unused Disk-Space: {unused_space}")
+required_deletion = 30000000 - unused_space
+print(f"Total Filesize to delete required for update: {required_deletion}")
 
-DirsAvailforDel = []
-for Directory in Directorys:
-    Size = getDirSize(Directory)
-    if Size > RequiredDeletion:
-        DirsAvailforDel.append(Size)
-DirsAvailforDel.sort()
+dirs_avail_for_deletion = []
+for directory in directorys:
+    size = get_dir_size(directory)
+    if size > required_deletion:
+        dirs_avail_for_deletion.append(size)
+dirs_avail_for_deletion.sort()
 
-print(f"Smallest Dir big enough for update: {DirsAvailforDel[0]}")
+print(f"Smallest Dir big enough for update: {dirs_avail_for_deletion[0]}")

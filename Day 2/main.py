@@ -1,52 +1,52 @@
-List = open("Day 2\input.txt").read().split("\n")
-for i in range(len(List)):
-    List[i] = List[i].split()
-print(List)
+list = open("Day 2\input.txt").read().split("\n")
+for i in range(len(list)):
+    list[i] = list[i].split()
+print(list)
 
-Score = 0
-for i in range(len(List)):
-    match List[i]:
+score = 0
+for i in range(len(list)):
+    match list[i]:
         case ["A", "X"]: #Stein vs Stein; 1 + 3
-            Score += 4
+            score += 4
         case ["A", "Y"]: #Stein vs Papier; 2 + 6
-            Score += 8
+            score += 8
         case ["A", "Z"]: #Stein vs Schere; 3 + 0
-            Score += 3
+            score += 3
         case ["B", "X"]: #Papier vs Stein; 1 + 0
-            Score += 1
+            score += 1
         case ["B", "Y"]: #Papier vs Papier; 2 + 3
-            Score += 5
+            score += 5
         case ["B", "Z"]: #Papier vs Schere; 3 + 6
-            Score += 9
+            score += 9
         case ["C", "X"]: #Schere vs Stein; 1 + 6
-            Score += 7
+            score += 7
         case ["C", "Y"]: #Schere vs Papier; 2 + 0
-            Score += 2
+            score += 2
         case ["C", "Z"]: #Schere vs Schere; 3 + 3
-            Score += 6
+            score += 6
 
-print(f"\nScore: {Score}")
+print(f"\nScore: {score}")
 
-SecretScore = 0
-for i in range(len(List)):
-    match List[i]:
+secret_score = 0
+for i in range(len(list)):
+    match list[i]:
         case ["A", "X"]: #Stein vs Schere; 3 + 0
-            SecretScore += 3
+            secret_score += 3
         case ["A", "Y"]: #Stein vs Stein; 1 + 3
-            SecretScore += 4
+            secret_score += 4
         case ["A", "Z"]: #Stein vs Papier; 2 + 6
-            SecretScore += 8
+            secret_score += 8
         case ["B", "X"]: #Papier vs Stein; 1 + 0
-            SecretScore += 1
+            secret_score += 1
         case ["B", "Y"]: #Papier vs Papier; 2 + 3
-            SecretScore += 5
+            secret_score += 5
         case ["B", "Z"]: #Papier vs Schere; 3 + 6
-            SecretScore += 9
+            secret_score += 9
         case ["C", "X"]: #Schere vs Papier; 2 + 0
-            SecretScore += 2
+            secret_score += 2
         case ["C", "Y"]: #Schere vs Schere; 3 + 3
-            SecretScore += 6
+            secret_score += 6
         case ["C", "Z"]: #Schere vs Stein; 1 + 6
-            SecretScore += 7
+            secret_score += 7
 
-print(f"SecretScore: {SecretScore}")
+print(f"SecretScore: {secret_score}")

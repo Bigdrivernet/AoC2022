@@ -1,63 +1,63 @@
-Forest = open("Day 8\input.txt").read().split("\n")
+forest = open("Day 8\input.txt").read().split("\n")
 
-TreesVisible = 0
+trees_visible = 0
 
-for i in range(len(Forest)):
-    for j in range(len(Forest[0])):
-        Tree = int(Forest[i][j])
-        MaxTrees = [-1, -1, -1, -1] #Top, Right, Bottom, Left
+for i in range(len(forest)):
+    for j in range(len(forest[0])):
+        tree = int(forest[i][j])
+        max_trees = [-1, -1, -1, -1] #Top, Right, Bottom, Left
         upper = []
         lower = []
         for n in range(i):
-            upper.append(Forest[n][j])
-        for n in range(i+1, len(Forest)):
-            lower.append(Forest[n][j])
+            upper.append(forest[n][j])
+        for n in range(i+1, len(forest)):
+            lower.append(forest[n][j])
         
-        Top = set(upper)
-        if not len(Top) == 0:
-            MaxTrees[0] = int(max(Top))
-        Right = set(set(Forest[i][j+1:]))
-        if not len(Right) == 0:
-            MaxTrees[1] = int(max(Right))
-        Bottom = set(lower)
-        if not len(Bottom) == 0:
-            MaxTrees[2] = int(max(Bottom))
-        Left = set(set(Forest[i][:j]))
-        if not len(Left) == 0:
-            MaxTrees[3] = int(max(Left))
+        top = set(upper)
+        if not len(top) == 0:
+            max_trees[0] = int(max(top))
+        right = set(set(forest[i][j+1:]))
+        if not len(right) == 0:
+            max_trees[1] = int(max(right))
+        bottom = set(lower)
+        if not len(bottom) == 0:
+            max_trees[2] = int(max(bottom))
+        left = set(set(forest[i][:j]))
+        if not len(left) == 0:
+            max_trees[3] = int(max(left))
         
-        for MaxTree in MaxTrees:
-            if MaxTree < Tree:
-                TreesVisible += 1
+        for max_tree in max_trees:
+            if max_tree < tree:
+                trees_visible += 1
                 break
 
-print(TreesVisible)
+print(trees_visible)
 
-ScenicScores = []
+scenic_scores = []
 
-for i in range(len(Forest)):
-    for j in range(len(Forest[0])):
-        Tree = int(Forest[i][j])
-        ScenicTop = 0
-        ScenicRight = 0
-        ScenicBottom = 0
-        ScenicLeft = 0
+for i in range(len(forest)):
+    for j in range(len(forest[0])):
+        tree = int(forest[i][j])
+        scenic_top = 0
+        scenic_right = 0
+        scenic_bottom = 0
+        scenic_left = 0
         for n in reversed(range(i)):
-            ScenicTop += 1
-            if int(Forest[n][j]) >= Tree:
+            scenic_top += 1
+            if int(forest[n][j]) >= tree:
                 break
-        for CurrentTree in Forest[i][j+1:]:
-            ScenicRight += 1
-            if int(CurrentTree) >= Tree:
+        for current_tree in forest[i][j+1:]:
+            scenic_right += 1
+            if int(current_tree) >= tree:
                 break
-        for n in range(i + 1, len(Forest)):
-            ScenicBottom += 1
-            if int(Forest[n][j]) >= Tree:
+        for n in range(i + 1, len(forest)):
+            scenic_bottom += 1
+            if int(forest[n][j]) >= tree:
                 break
-        for CurrentTree in reversed(Forest[i][:j]):
-            ScenicLeft += 1
-            if int(CurrentTree) >= Tree:
+        for current_tree in reversed(forest[i][:j]):
+            scenic_left += 1
+            if int(current_tree) >= tree:
                 break
-        ScenicScores.append(ScenicTop * ScenicRight * ScenicBottom * ScenicLeft)
+        scenic_scores.append(scenic_top * scenic_right * scenic_bottom * scenic_left)
 
-print(max(ScenicScores))
+print(max(scenic_scores))

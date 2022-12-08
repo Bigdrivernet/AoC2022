@@ -1,19 +1,19 @@
-Pairs = open("Day 4\input.txt").read().split("\n")
-for i in range(len(Pairs)):
-    Pair = Pairs[i].split(",")
-    Pairs[i] = [Pair[0].split("-"), Pair[1].split("-")]
+pairs = open("Day 4\input.txt").read().split("\n")
+for i in range(len(pairs)):
+    pair = pairs[i].split(",")
+    pairs[i] = [pair[0].split("-"), pair[1].split("-")]
 
-print(Pairs)
+print(pairs)
 
-SumFullOverlap = 0
-SumOverlap = 0
-for Pair in Pairs:
-    SetA = set(range(int(Pair[0][0]), int(Pair[0][1]) + 1))
-    SetB = set(range(int(Pair[1][0]), int(Pair[1][1]) + 1))
-    if SetA.issubset(SetB) or SetB.issubset(SetA):
-        SumFullOverlap += 1
-    if len(SetA.intersection(SetB)) != 0:
-        SumOverlap += 1
+sum_full_overlap = 0
+sum_overlap = 0
+for pair in pairs:
+    set_a = set(range(int(pair[0][0]), int(pair[0][1]) + 1))
+    set_b = set(range(int(pair[1][0]), int(pair[1][1]) + 1))
+    if set_a.issubset(set_b) or set_b.issubset(set_a):
+        sum_full_overlap += 1
+    if len(set_a.intersection(set_b)) != 0:
+        sum_overlap += 1
 
-print(SumFullOverlap)
-print(SumOverlap)
+print(sum_full_overlap)
+print(sum_overlap)

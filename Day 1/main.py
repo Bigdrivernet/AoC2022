@@ -1,18 +1,18 @@
-Input = open("Day 1\input.txt").read()
-ElvesList = Input.split("\n\n")
+input = open("Day 1\input.txt").read()
+elves_list = input.split("\n\n")
 
-Elves = len(ElvesList)
-print(Elves)
-for i in range(len(ElvesList)):
-    SubList = ElvesList[i].split("\n")
-    Sum = 0
-    for Element in SubList:
-        Sum += int(Element)
-    ElvesList[i] = Sum
+elves = len(elves_list)
+print(elves)
+for i in range(len(elves_list)):
+    sublist = elves_list[i].split("\n")
+    sum = 0
+    for element in sublist:
+        sum += int(element)
+    elves_list[i] = sum
 
-ElvesList.sort()
+elves_list.sort()
 
-print(ElvesList)
-print(f"Maximum: {max(ElvesList)}")
-SumThreeBiggest = ElvesList[Elves - 1] + ElvesList[Elves - 2] + ElvesList[Elves - 3]
-print(f"Die drei Maxima: {SumThreeBiggest}")
+print(elves_list)
+print(f"Maximum: {max(elves_list)}")
+sum_three_biggest = elves_list[elves - 1] + elves_list[elves - 2] + elves_list[elves - 3]
+print(f"Die drei Maxima: {sum_three_biggest}")

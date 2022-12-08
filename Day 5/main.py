@@ -1,53 +1,53 @@
-InputStacks, Moves = open("Day 5\input.txt").read().split("\n\n")
-InputStacks = InputStacks.split("\n")
-del InputStacks[-1]
+input_stacks, moves = open("Day 5\input.txt").read().split("\n\n")
+input_stacks = input_stacks.split("\n")
+del input_stacks[-1]
 
-for i in range(len(InputStacks)):
-    InputStacks[i] = InputStacks[i][1:len(InputStacks[i]):4]
-InputStacks.reverse()
+for i in range(len(input_stacks)):
+    input_stacks[i] = input_stacks[i][1:len(input_stacks[i]):4]
+input_stacks.reverse()
 
-Stacks = []
-for i in range(len(InputStacks[0])):
-    Stack = []
-    for j in range(len(InputStacks)):
-        if InputStacks[j][i] != " ":
-            Stack.append(InputStacks[j][i])
-    Stacks.append(Stack)
+stacks = []
+for i in range(len(input_stacks[0])):
+    stack = []
+    for j in range(len(input_stacks)):
+        if input_stacks[j][i] != " ":
+            stack.append(input_stacks[j][i])
+    stacks.append(stack)
 
-SecondStacks = []
-for i in range(len(InputStacks[0])):
-    Stack = []
-    for j in range(len(InputStacks)):
-        if InputStacks[j][i] != " ":
-            Stack.append(InputStacks[j][i])
-    SecondStacks.append(Stack)
+second_stacks = []
+for i in range(len(input_stacks[0])):
+    stack = []
+    for j in range(len(input_stacks)):
+        if input_stacks[j][i] != " ":
+            stack.append(input_stacks[j][i])
+    second_stacks.append(stack)
 
-Moves = Moves.split("\n")
+moves = moves.split("\n")
 
-for i in range(len(Moves)):
-    Move = Moves[i][5:len(Moves[i])]
-    Move = Move.replace(" from ", " ")
-    Move = Move.replace(" to ", " ")
-    Moves[i] = Move.split()
+for i in range(len(moves)):
+    move = moves[i][5:len(moves[i])]
+    move = move.replace(" from ", " ")
+    move = move.replace(" to ", " ")
+    moves[i] = move.split()
 
-print(Moves)
+print(moves)
 
-for Move in Moves:
-    for i in range(int(Move[0])):
-        Stacks[int(Move[2]) - 1].append(Stacks[int(Move[1]) - 1][-1])
-        del Stacks[int(Move[1]) - 1][-1]
+for move in moves:
+    for i in range(int(move[0])):
+        stacks[int(move[2]) - 1].append(stacks[int(move[1]) - 1][-1])
+        del stacks[int(move[1]) - 1][-1]
 
-Output = ""
-for Stack in Stacks:
-    Output += Stack[-1]
-print(Output)
+output = ""
+for stack in stacks:
+    output += stack[-1]
+print(output)
 
-for Move in Moves:
-    for i in range(int(Move[0])):
-        SecondStacks[int(
-            Move[2]) - 1].append(SecondStacks[int(Move[1]) - 1].pop(-(int(Move[0])) + i))
+for move in moves:
+    for i in range(int(move[0])):
+        second_stacks[int(
+            move[2]) - 1].append(second_stacks[int(move[1]) - 1].pop(-(int(move[0])) + i))
 
-SecondOutput = ""
-for Stack in SecondStacks:
-    SecondOutput += Stack[-1]
-print(SecondOutput)
+second_output = ""
+for stack in second_stacks:
+    second_output += stack[-1]
+print(second_output)
