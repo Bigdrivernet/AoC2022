@@ -4,7 +4,7 @@ for i in range(len(input)):
 
 head = {"x" : 0, "y" : 0}
 tail = {"x" : 0, "y" : 0}
-tail_positions = []
+tail_positions = [(0, 0)]
 
 for move in input:
     for i in range(int(move[1])):
